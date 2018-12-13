@@ -1,0 +1,82 @@
+Image alt text
+  Good alt text is:
+    1. Discernible (screen readers can access the alternative text)
+    2. Meaningful (the alternative text accurately describes the image's purpose or author's intent in using the image).
+    3. Concise (the alternative text does not exceed about 250 characters, and preferably is much shorter than that)
+
+    If an image is decorative or redundant, it can be hidden with alt="" (but this only works with HTML)
+
+  Standard for adding alternative text to images is with the "alt" tag, but it can be done with a number of other attributes as well:
+    -aria-labeledby
+    -aira-label
+    -title
+
+  Informative images
+    -Images that convey content MUST have programmatically-discernible alternative text.
+      i.e. <img src="sewing_machine_singer.jpg" width="686" height="518" alt="A Singer model antique sewing machine">
+    -The alternative text for informative images MUST be meaningful (accurately conveying the purpose of the image, and the author's intent in a way that is useful to those who cannot see the image).
+      -Consider:
+        1. Why is this non-text content here?
+        2. What information is it presenting?
+        3. What purpose does it fulfill?
+        4. If I could not use the non-text content, what words would I use to convey the same information or function?
+    -Alternative text SHOULD NOT include words that identify the element as a graphic or image.
+        -i.e. THIS IS BAD: alt="A photo of a Singer model antique sewing machine">
+        -DON'T INCLUDE THE WORDS PHOTO, GRAPHIC, OR IMAGE
+    -The length of the alternative text for informative images SHOULD be concise (no more than about 250 characters).
+        -"Think of alt tags like tweets"
+
+  Decorative or redundant images
+    -Images that do not convey content, are decorative, or are redundant to content that is already conveyed in text MUST be given null alternative text (alt=""), ARIA role="presentation", or implemented as CSS backgrounds.
+
+  Actionable Images (Links, Buttons, Controls)
+    -Everything that applies to "informative images" applies here
+    -Similarly, don't include the words "link, graphic, or image" in the alt tag
+
+  Form Inputs type="image"
+    -Form inputs with type="image" MUST have alternative text.
+      -i.e: <input type="image" name="submit" src="submit-button.png" alt="Submit">
+    -Accurate and concise
+    -No more than 250 characters
+
+  Animated images
+    -A method MUST be provided to pause, stop, or hide any prerecorded video-only content that begins playing automatically and which lasts 5 seconds or more
+    -Animated images MUST NOT flash or flicker at 3 or more times per second.
+
+  Complex images
+    -Complex images MUST be briefly described using alt text AND MUST have a more complete long description.
+      -Several ways of adding a longer description alongside a <250 character alt tag:
+        1. Provide the long description in the context of the HTML document itself.
+        2. Provide a button that expands a collapsed region that contains the long description.
+        3. Provide a button to open a dialog that contains the long description.
+        4. Provide a link to a long description on another page via a normal link text.
+        5. Provide a link to a long description on another page via the longdesc attribute
+
+    Good Example: Example 1: provide context in HTML itself
+      i.e.
+      <img class="border" src="bar-chart.png" width="546" height="330"
+      alt="Bar chart with percentages. Extended description below chart."
+      aria-describedby="description-extended">
+
+      <div id="description-extended">
+        <p>Full long description goes here.</p>
+      </div>
+
+    -The long description (or a link or button to access the long description) SHOULD be visible to sighted users.
+      -See https://dequeuniversity.com/class/images2/alt-text/complex for more info
+
+    -Images of text
+      -An image MUST NOT include informative text if an equivalent visual presentation of the text can be rendered using real text.
+        -Good example: logo in text
+        <img src="deque_logo.png" width="165" height="59" alt="Deque">
+      -Images MUST NOT include informative text, unless the text is essential (such as a logo), or the font, size, color, and background are customizable.
+
+    -CSS background images
+      -Purely decorative or redundant CSS images SHOULD NOT have a text alternative in the HTML content.
+        -Wasting space is dumb and bad
+      -The alternative text for informative or actionable CSS images MUST be available as programmatically-discernible text in the HTML content.
+        -Good Example: Actionable (linked) background image with alternative text via aria-label
+          -i.e. <a href="http://www.facebook.com/dequesystems" class="fb" aria-label="Deque's Facebook page"></a>
+      -The alternative text (in the HTML content) for informative or actionable CSS images MUST adequately and accurately describe the purpose of the image.
+
+  -Image maps
