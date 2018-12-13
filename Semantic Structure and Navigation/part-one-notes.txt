@@ -1,0 +1,291 @@
+Topics covered in this module:
+
+Page title
+  -Always include <head> and <title> elements, make title identifiable and accurate
+
+Language
+  -Pay attention to primary language of page and language of parts of the page (see index.html)
+
+Landmarks
+  -HTML5 designates navigation using these elements: <header>, <nav>, <main>, and <footer>
+  -Similar functionality is available using the ARIA (Accessible Rich Internet Application) attributes role="banner", role="navigation", role="main" and role="contentinfo".
+  -You SHOULD use landmarks to designate pre-defined parts of the layout
+
+  HTML5 -> ARIA equivalents
+
+  <header> -> role="banner"
+  <nav> -> role="navigation"
+  n/a -> role="search"
+  <main> -> role="main"
+  <footer> -> role="contentinfo"
+  <aside> -> role="complimentary"
+  <section> -> role="region"
+  <article -> role="article"
+  <form> -> role="form"
+
+  Best practice for landmarks
+
+  1. All text SHOULD be contained within a landmark
+  2. Multiple instances of the same type of landmark SHOULD be distinguishable by different discernible labels (aria-label or aria-labelledby).
+  3. A page SHOULD NOT contain more than one instance of each of the following landmarks: banner, main, and contentinfo.
+  4. The total number of landmarks SHOULD be minimized to the extent appropriate for the content.
+  5. Landmarks SHOULD be backwards compatible
+    -You can do this with CSS like so:
+
+      <style>
+        /* landmarks */
+        article, aside, footer, header, main, nav, section,
+
+        /* other HTML 5 elements that should (probably)
+        be set to display:block */
+        audio, canvas, datalist, details, figcaption,
+        figure, output, progress, summary, video {
+           display:block;
+        }
+      </style>
+
+  Landmarks can be navigated using screen readers in the following ways:
+    A. List all landmarks
+    B. Navigate from one landmark to the next
+    C. Navigate to the main content landmark
+
+Headings
+  * A lot of these line up with obvious good design practices.
+
+  -Headings help with content organization and navigation
+  -Bonus Benefit: Headings Improve Search Engine Optimization
+
+  Best practices for headings:
+  1. Text that acts as a heading visually or structurally SHOULD be designated as a true heading in the markup.
+  2. Text that does not act as a heading visually or structurally SHOULD NOT be marked as a heading.
+  3. Headings MUST be accurate and informative.
+  4. Heading text SHOULD be concise and relatively brief.
+  5. Headings SHOULD convey a clear and accurate structural outline of the sections of content of a web page.
+  6. Headings SHOULD NOT skip hierarchical levels.
+  7. The beginning of the main content SHOULD start with <h1>.
+
+  **** 8. Most web pages SHOULD have only one <h1>. ****
+
+  Headings can be navigated using screen readers in the following ways:
+    A. List all headings
+    B. Navigate from one heading to the next
+    C. Navigate to headings of a certain level (e.g. to all <h2> headings)
+
+Links
+  Links must be designated correctly
+    A. Links MUST be semantically designated as such
+    B. ARIA role="link" can be used to provide link semantics
+      i.e. <span role="link" tabindex="0" data-href="https://deque.com">Deque Systems</span>
+      -Not a requirement
+    C. Links and buttons SHOULD be designated semantically according to their functions.
+
+  Link text
+    A. A link MUST have programmatically-discernible text, as determined by the accessible name calculation algorithm.
+      -Good practices:
+        1. Link text within the <a> element
+        2. Link text from the alt attribute of the img Element
+        3. Using aria-label to override native link text
+        4. Supplemental link text using hidden text
+        5. Using aria-label to provide link text for background images
+    B. The purpose of each link SHOULD be able to be determined from the link text alone.
+      -i.e. link should make text out of context
+    C. The link text SHOULD NOT repeat the role ("link").
+    D. Features such as labels, names, and text alternatives for content that have the same functionality across multiple web pages MUST be consistently identified.
+
+  Links to External Sites, New Windows, Files
+    A. A link that opens in a new window or tab SHOULD indicate that it opens in a new window or tab.
+
+  Links MUST be visually distinguishable from surrounding text
+    -I.e. different color, underlining, etc.
+
+  Visual focus indicator
+    A. All focusable elements MUST have a visual focus indicator when in focus.
+      -Do NOT remove it with CSS!!!
+    B. Focusable elements SHOULD have enhanced visual focus indicator styles.
+    * See "visual focus indicator" section of curriculum for examples on how to enhance the focus
+
+  Navigating links with screen readers
+    -Using "tab" is a common way to navigate with a screen reader
+    * See this section of curriculum for more
+
+Navigation between pages
+  Navigation lists
+    A. A navigation list SHOULD be designated with the <nav> element or role="navigation".
+    B. A navigation list SHOULD include a visible method of informing users which page within the navigation list is the currently active/visible page.
+      * You can do this with CSS.
+      I.e.
+        <head>
+        <title>Groceries</title>
+        <style>
+          li.current-page {
+            outline: red solid 1px;
+          }
+          </style>
+        </head>
+        <ul>
+          <li><a href="#">Fruits</a></li>
+          <li><a href="#">Vegetables</a></li>
+          <li class="current-page">Nuts</li>
+        </ul>
+
+    C. A navigation list SHOULD include a method of informing blind users which page within the navigation list is the currently active/visible page.
+    * These are all pretty self explanatory
+
+  Consistency
+    -Navigation patterns that are repeated on web pages MUST be presented in the same relative order each time they appear and MUST NOT change order when navigating through the site.
+
+Navigations within pages
+  Skip navigation links
+    A. A keyboard-functional "skip" link SHOULD be provided to allow keyboard users to navigate directly to the main content.
+      -This link basically lets users skip through all of the navigation to the main content. This is kind of a weird idea but there's an example on the curriculum page.
+    B. The "skip link" SHOULD be the first focusable element on the page.
+
+  Table of contents
+    A. A table of contents for the page MAY be included at the top of the content or in the header.
+      -Increases understandability
+      -Improves navigation
+    B. If a table of contents for the page is included, it SHOULD reflect the heading structure of the page.
+
+  Reading order and tab/focus order
+    A. The DOM order determines the reading order and tab
+      -Watch out for:
+        -CSS positioning techniques
+        -Injecting content dynamically via JavaScript or AJAX
+    B. The reading and navigation order MUST be logical and intuitive.
+    C. The navigation order of focusable elements MUST be logical and intuitive.
+    D. tabindex of positive values SHOULD NOT be used.
+
+  Paginated views
+    -A paginated view SHOULD include a visible method of informing users which view is the currently active/visible view.
+      -Good practice: highlight current page number
+    -A paginated view SHOULD include a method of informing blind users which view is the currently active/visible view.
+      -Good practice: use hidden text
+        *See course for example
+
+Tables
+  Semantic markup for tabular data
+    -Tabular data SHOULD be represented in a <table>
+      -Do NOT create fake tables!
+
+  Table caption/name
+    -Data tables SHOULD have a programmatically-associated caption or name.
+      -i.e. "First quarter results"
+      -Good example: table with a <caption> element
+      -Bad example: table with a fake caption
+    -The name/caption of a data table SHOULD describe the identity or purpose of the table accurately, meaningfully, and succinctly.
+    -The name/caption of each data table SHOULD be unique within the context of other tables on the same page.
+
+  Table headers
+    -Table headers MUST be designated with <th>.
+    -Data table header text MUST accurately describe the category of the corresponding data cells.
+
+  Simple header associations
+    -Table data cells MUST be associated with their corresponding header cells.
+      -Easiest way to do this is with scope="rowgroup" or scope="colgroup"
+
+  Complex header associations
+    -Header/data associations that cannot be designated with <th> and scope MUST be designated with headers plus id
+      -See course page for details
+
+  Nested or split tables
+    -Data table headers and data associations MUST NOT be referenced across nested, merged, or separate tables.
+
+  Table summary
+    -A summary MAY be provided for data tables.
+      -Good example 1: Put the Summary in the paragraph preceding or following the table (with aria-describedby)
+      -Good example 2: Put the summary in the table's <caption>, as long as the summary is brief
+      -Good example 3: Put the summary in a <figcaption>
+    -A data table summary, if provided, SHOULD make the table more understandable to screen reader users.
+
+  Layout tables
+    -Tables SHOULD NOT be used for the purpose of purely visual (non-data) layout.
+    -Layout tables MUST NOT contain data table markup.
+
+  Navigating tables with screen readers
+    -How Screen Readers Read Tables
+      A. Method 1: Show List of All Tables
+      B. Method 2: Navigate from One Table to the Next
+      C. Method 3: Navigate Between Cells with a Table
+
+Lists
+  Semantic markup for lists
+    -Lists MUST be constructed using the appropriate semantic markup.
+      -Unordered lists, ordered lists, definition lists (descriptive lists in HTML)
+
+  Navigating lists with screen readers
+    1. Show all lists
+    2. Navigate from one list to the next
+    3. Navigate from one list item to the next
+
+Iframes
+  Frame titles
+    -The source page of an iframe MUST have a valid, meaningful <title>.
+      -Good example: Iframe with title (<title>)
+    -Iframe title MUST be accurate descriptive
+    -Frames MUST have a unique title (in the context of the page)
+
+  Page title within an Iframe
+    -The source page of an iframe MUST have a valid, meaningful <title>.
+
+  Semantic structure across iframes
+    -Screen readers allow cross-frame navigation of semantic elements.
+    -The heading hierarchy of an iframe SHOULD be designed to fit within the heading hierarchy of the parent document, if possible.
+
+  Hiding iframes that don’t contain meaningful content
+    -Hidden frames or frames that do not convey content to users SHOULD be hidden from assistive technologies using aria-hidden="true".
+      -Good example: empty Iframe with aria-hidden="true"
+
+  Navigating iframes with screen readers
+    -Method 1: Show List of All Iframes
+    -Method 2: Navigate from One Iframe to the Next
+
+Other semantic frames
+  Strong and em
+    -Critical emphasis in the text SHOULD be conveyed through visual styling.
+    -Critical emphasis in the text SHOULD be conveyed in a text-based format.
+      -Option 1: Add visible text
+      -Option 2: Add invisible text
+      -Option 3: Add an image with appropriate alt text
+
+  Blockquote and q
+    -The <blockquote> element SHOULD be used to designate long (block level) quotations.
+    -The <blockquote> element SHOULD NOT be used for visual styling alone.
+    -The <q> element (for inline quotations) SHOULD NOT be used as the only way to designate quotations.
+
+  Code and pre
+    -Code SHOULD be marked with the <code> element and styled to look different from non-code text.
+      -Good example: the <code> element is used to mark code
+    -Blocks of code SHOULD be formatted with the <pre> element.
+      -Good example: Preformatted text marked as code
+
+  Strikethrough/Delete and Insert
+    -Strikethrough text SHOULD be marked with the <del> element.
+    -Critical strikethrough text MUST be supplemented with a text-based method to convey the meaning of the strikethrough.
+      -Good Example: Hidden text used to convey inserted text
+    -Text designated for insertion SHOULD be marked with the <ins> element.
+    -Critical text designated for insertion MUST be supplemented with a text-based method to convey the meaning of the insertion.
+      -Good example: Hidden text used to convey inserted text
+
+  Highlighting (<mark>)
+    -Highlighted text SHOULD be marked with the <mark> element.
+      -Good Example: The <mark> element is used to highlight important text
+      -Screen readers don't actually notify users that a <mark> element is present. Sighted users still benefit, however.
+    -Critical highlighted text SHOULD be supplemented with a text-based method to convey the meaning of the highlighting.
+      -Good Example: Hidden text used to convey highlighting to screen reader users
+
+    *** NOTE: Screen readers don't tell users that any of the following tags are present in the code.
+
+  Parsing and validity
+    Conflict and duplicates
+      -IDs MUST be Unique within a web page.
+      -Names, when provided, of block level elements (e.g. landmarks, tables, iframes, etc.) SHOULD be unique within a web page.
+
+  Parent-child relationships
+    Markup SHOULD adhere to required parent-child relationships of elements and attributes.
+      -HTML relationships
+      -ARIA relationships
+        -Good Example: An ARIA tab panel widget with correct parent-child relationships
+
+    Deprecated Markup
+      -Deprecated markup SHOULD NOT be used.
+      -See list of deprecated elements

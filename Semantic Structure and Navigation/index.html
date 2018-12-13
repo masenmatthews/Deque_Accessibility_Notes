@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Always include head, title, and language -->
+<html lang="en">
+<head>
+  <title>Accessibility Made Easy</title>
+</head>
+<!-- Pay attention to landmarks! Don't use the same landmark tags multiple times. -->
+<body>
+  <nav aria-label="Main nav">
+    <div>Insert nav here</div>
+  </nav>
+  <header>
+    <!-- h1 tags get recognized as true headings -->
+    <h1 aria-label="1">Accessibility Made Easy</h1>
+  </header>
+  <main aria-label="Main site content">
+    <p> Accessibility can be tricky. There are a number of things to keep in mind. We'll go through some of those things on this webpage.</p>
+    <p> One thing to keep in mind is to use appropriate language tags when switching languages within text like so: &quot;<span lang="es">No comprendo nada de lo que dices.</span>&quot;</p>
+    <!-- These snippets help with links - see "links to external sites...etc." -->
+    <p> Here are some helpful links:
+    <a href="https://dequeuniversity.com" target="_blank">Deque training
+      <img src="newWindow.png" alt="opens new window" width="16" height="16">
+    </a>
+    <a href="https://dequeuniversity.com/assets/pdf/screenreaders/survival-guide.pdf">
+    View the Screen Reader Survival Guide
+    <img src="pdf.png" alt="PDF document" width="16" height="16">
+    </a></p>
+    <p><a href="http://www.google.com/">Google (link leads to external site)</a></p>
+
+    <table class="data">
+      <caption><strong>A sample accessible table featuring pastry production on certain days</strong></caption>
+      <thead>
+        <tr>
+        <th scope="col">Pastries</th>
+        <th scope="col">Cookies</th>
+        <th scope="col">Pies</th>
+        <th scope="col">Cakes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Monday</th>
+          <td>55</td>
+          <td>63</td>
+          <td>36</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Tuesday</th>
+          <td>14</td>
+          <td>47</td>
+          <td>38</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Wednesday</th>
+          <td>10</td>
+          <td>7</td>
+          <td>13</td>
+        </tr>
+
+      </table>
+
+  </main>
+  <footer aria-tag="learn more">
+    <div>learn more at <a href="https://sample.com">sample</a>
+    </div>
+  </footer>
+</body>
